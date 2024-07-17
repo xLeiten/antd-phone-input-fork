@@ -1,3 +1,5 @@
+## !!Do not use!! The repository is used as an npm module for my other project
+
 # Antd Phone Input <img src="https://github.com/typesnippet.png" align="right" height="64" />
 
 [![npm](https://img.shields.io/npm/v/antd-phone-input)](https://www.npmjs.com/package/antd-phone-input)
