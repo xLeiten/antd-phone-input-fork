@@ -65,20 +65,16 @@
     "README.md"
   ],
   "scripts": {
-    "rename": "bash -c 'for file in *.js; do mv $file \"${file%.js}.$0.js\"; done'",
-    "build": "tsc --module commonjs && npm run rename -- cjs && tsc --declaration",
-    "prebuild": "rm -r resources index* locale* types* styles* || true",
+    "build": "tsc --module commonjs && tsc --declaration",
+    "prebuild": "rmdir /q /s dist || exit 0",
     "postpack": "tsx scripts/prepare-package.ts",
     "test": "jest --config jestconfig.json",
-    "postbuild": "cp -r src/resources ."
+    "postbuild": "xcopy /S src\\resources dist"
   },
   "license": "MIT",
   "peerDependencies": {
     "antd": ">=4",
     "react": ">=16"
-  },
-  "dependencies": {
-    "react-phone-hooks": "^0.1.6"
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
@@ -92,5 +88,8 @@
     "tslib": "^2.6.2",
     "tsx": "^3.12.10",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "react-phone-hooks": "github:xLeiten/react-phone-hooks-fork"
   }
 }

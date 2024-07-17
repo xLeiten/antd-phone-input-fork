@@ -30,7 +30,7 @@ import {
     parsePhoneNumber,
     useMask,
     usePhone,
-} from "react-phone-hooks";
+} from "react-phone-hooks/dist/index";
 
 import locale from "./locale";
 import {injectMergedStyles} from "./styles";
@@ -102,7 +102,7 @@ const PhoneInput = forwardRef(({
     const selectValue = useMemo(() => {
         let metadata = getMetadata(getRawValue(value), countriesList);
         metadata = metadata || getCountry(countryCode as any);
-        return ({...metadata})?.[0] + ({...metadata})?.[2];
+        return metadata ? metadata.iso + metadata.code : "";
     }, [countriesList, countryCode, value])
 
     const namePath = useMemo(() => {
@@ -161,11 +161,11 @@ const PhoneInput = forwardRef(({
         const rawValue = getRawValue(phoneValue);
         const metadata = getMetadata(rawValue);
         // Skip if value has not been updated by `setFieldValue`.
-        if (!metadata?.[3] || rawValue === getRawValue(value)) return;
-        const formattedNumber = getFormattedNumber(rawValue, metadata?.[3] as string);
+        if (!metadata?.mask || rawValue === getRawValue(value)) return;
+        const formattedNumber = getFormattedNumber(rawValue, metadata?.mask as string);
         const phoneMetadata = parsePhoneNumber(formattedNumber);
         setFieldValue({...phoneMetadata, valid: (strict: boolean) => checkValidity(phoneMetadata, strict)});
-        setCountryCode(metadata?.[0] as string);
+        setCountryCode(metadata?.iso as string);
         setValue(formattedNumber);
     }, [phoneValue, value, setFieldValue, setValue])
 
@@ -173,8 +173,8 @@ const PhoneInput = forwardRef(({
         if (initiatedRef.current) return;
         initiatedRef.current = true;
         let initialValue = getRawValue(value);
-        if (!initialValue.startsWith(metadata?.[2] as string)) {
-            initialValue = metadata?.[2] as string;
+        if (!initialValue.startsWith(metadata?.code as string)) {
+            initialValue = metadata?.code as string;
         }
         const formattedNumber = getFormattedNumber(initialValue, pattern);
         const phoneMetadata = parsePhoneNumber(formattedNumber, countriesList);
@@ -222,7 +222,7 @@ const PhoneInput = forwardRef(({
                 </div>
             )}
         >
-            {countriesList.map(([iso, name, dial, pattern]) => {
+            {countriesList.map(({ iso, name, code: dial, mask: pattern }) => {
                 const mask = disableParentheses ? pattern.replace(/[()]/g, "") : pattern;
                 return (
                     <Select.Option

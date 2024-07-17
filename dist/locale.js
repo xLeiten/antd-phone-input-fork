@@ -66,18 +66,11 @@ import taIN from "antd/es/locale/ta_IN";
 import trTR from "antd/es/locale/tr_TR";
 import zhHK from "antd/es/locale/zh_HK";
 import * as phoneLocale from "react-phone-hooks/dist/locale";
-
 const locale = {
     arEG, bnBD, csCZ, elGR, esES, faIR, frCA, glES, hrHR, idID, jaJP, kmKH, koKR, lvLV,
     mnMN, nbNO, nlNL, ptPT, siLK, srRS, thTH, ukUA, viVN, zhTW, azAZ, byBY, daDK, enGB,
     etEE, fiFI, frFR, heIL, huHU, isIS, kaGE, kmrIQ, kuIQ, mkMK, msMY, neNP, plPL, roRO,
     skSK, svSE, tkTK, urPK, zhCN, bgBG, caES, deDE, enUS, frBE, gaIE, hiIN, hyAM, itIT,
     kkKZ, knIN, ltLT, mlIN, nlBE, ptBR, ruRU, slSI, taIN, trTR, zhHK,
-}
-
-type Locale = keyof typeof locale;
-
-export default (lang: Locale) => ({
-    ...locale[lang],
-    PhoneInput: (phoneLocale as any)[lang],
-})
+};
+export default (lang) => (Object.assign(Object.assign({}, locale[lang]), { PhoneInput: phoneLocale[lang] }));
