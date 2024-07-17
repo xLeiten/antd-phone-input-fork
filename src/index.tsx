@@ -30,7 +30,7 @@ import {
     parsePhoneNumber,
     useMask,
     usePhone,
-} from "react-phone-hooks/dist/index";
+} from "react-phone-hooks";
 
 import locale from "./locale";
 import {injectMergedStyles} from "./styles";

@@ -1,7 +1,7 @@
 "use client";
 
-import {injectStyles, jsonToCss} from "react-phone-hooks/dist/styles";
-import commonStyles from "react-phone-hooks/dist/stylesheet.json";
+import {injectStyles, jsonToCss} from "react-phone-hooks/styles";
+import commonStyles from "react-phone-hooks/stylesheet.json";
 import {defaultPrefixCls} from "antd/es/config-provider";
 
 import customStyles from "./resources/stylesheet.json";

@@ -1,5 +1,5 @@
 import { ChangeEvent, KeyboardEvent, ReactNode } from "react";
-import types from "react-phone-hooks/dist/types";
+import types from "react-phone-hooks/types";
 import { InputProps } from "antd/es/input";
 export type PhoneNumber = types.PhoneNumber;
 export interface PhoneInputProps extends Omit<InputProps, "value" | "onChange"> {

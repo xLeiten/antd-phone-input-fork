@@ -18,7 +18,7 @@ import { FormContext } from "antd/es/form/context";
 import { useWatch } from "antd/es/form/Form";
 import Select from "antd/es/select";
 import Input from "antd/es/input";
-import { checkValidity, cleanInput, displayFormat, getCountry, getDefaultISO2Code, getFormattedNumber, getMetadata, getRawValue, parsePhoneNumber, useMask, usePhone, } from "react-phone-hooks/dist/index";
+import { checkValidity, cleanInput, displayFormat, getCountry, getDefaultISO2Code, getFormattedNumber, getMetadata, getRawValue, parsePhoneNumber, useMask, usePhone, } from "react-phone-hooks";
 import locale from "./locale";
 import { injectMergedStyles } from "./styles";
 const PhoneInput = forwardRef((_a, forwardedRef) => {

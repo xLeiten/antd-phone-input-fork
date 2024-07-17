@@ -26,46 +26,50 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs.js",
+      "import": "./index.js",
+      "require": "./index.cjs.js",
       "types": {
-        "default": "./dist/index.d.ts"
+        "default": "./index.d.ts"
       }
     },
     "./types": {
-      "import": "./dist/types.js",
-      "require": "./dist/types.cjs.js",
+      "import": "./types.js",
+      "require": "./types.cjs.js",
       "types": {
-        "default": "./dist/types.d.ts"
+        "default": "./types.d.ts"
       }
     },
     "./styles": {
-      "import": "./dist/styles.js",
-      "require": "./dist/styles.cjs.js",
+      "import": "./styles.js",
+      "require": "./styles.cjs.js",
       "types": {
-        "default": "./dist/styles.d.ts"
+        "default": "./styles.d.ts"
       }
     },
     "./locale": {
-      "import": "./dist/locale.js",
-      "require": "./dist/locale.cjs.js",
+      "import": "./locale.js",
+      "require": "./locale.cjs.js",
       "types": {
-        "default": "./dist/locale.d.ts"
+        "default": "./locale.d.ts"
       }
     },
     "./package.json": "./package.json"
   },
   "files": [
-    "dist/",
+    "index*",
+    "types*",
+    "styles*",
+    "locale*",
     "LICENSE",
+    "resources",
     "README.md"
   ],
   "scripts": {
     "build": "tsc --module commonjs && tsc --declaration",
-    "prebuild": "rmdir /q /s dist || exit 0",
+    "prebuild": "del /q locale* index* styles* types* && rmdir /s /q resources || exit 0",
     "postpack": "tsx scripts/prepare-package.ts",
     "test": "jest --config jestconfig.json",
-    "postbuild": "xcopy /S src\\resources dist"
+    "postbuild": "xcopy /S src\\resources ."
   },
   "license": "MIT",
   "peerDependencies": {
